@@ -1,0 +1,34 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Order</th>
+            <th scope="col">Username</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for board in boards %}
+          <tr>
+            <th scope="row">{{board.pk}}</th>
+            <td>{{ board.author.username }}</td>
+            <td><a href="{% url 'board_read_one' board.pk %}">{{ board.title }}</a></td>
+            <td>{{ board.content }}</td>
+            <td>{{ board.create_at }}</td>
+            <td><a href = "{% url 'pre_update' board.pk%}"class ="btn btn-outline-success my-2 my-sm-0">수정하기</a></td>
+            <td><a href = "{% url 'delete' board.pk%}"class ="btn btn-outline-success my-2 my-sm-0">삭제하기</a></td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <a href="{% url 'board_create' %}" class="btn btn-outline-primary my-2 my-sm-0">Create</a>
+{% endblock %}

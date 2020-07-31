@@ -1,0 +1,18 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+<section>
+    <form action = "{% url 'board_create' %}" method = "POST">
+      {% csrf_token %}         
+    <div class="form-group">
+        <label for="titleInput">제목</label>
+        <input type="text" class="form-control" id="titleInput" name="title">
+      </div>
+      <div class="form-group">
+        <label for="contentInput">내용</label>
+        <textarea class ="form-control" id="contentInput" name="content" rows = "5"></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary">제출</button>
+      </form>
+ </section>
+{% endblock %}
